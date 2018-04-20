@@ -4,13 +4,9 @@ var hitCounter = 0;
 
 Crafty.init(screenWidth,screenHeight, document.getElementById('game'));
 Crafty.background('lightblue');
-//
-//var block = Crafty.e('Player, 2D, Canvas, Color, Solid, Fourway')
-//    .color('#F00')
-//    .fourway(100);
 
 Crafty.e('Floor, 2D, Canvas, Solid, Color')
-    .attr({x: 0, y: 350, w: screenWidth * 2, h: 10})
+    .attr({x: 0, y: 390, w: screenWidth * 2, h: 10})
     .color('black');
 
 var player1 = Crafty.e('Player, 2D, Canvas, Color, Solid, Twoway, Gravity, Collision')
@@ -23,11 +19,11 @@ var player1 = Crafty.e('Player, 2D, Canvas, Color, Solid, Twoway, Gravity, Colli
           if (this.x == screenWidth)
           {
             pause();
-            Crafty.e('2D, DOM, Text').attr({x:screenWidth/2, y:screenHeight/2}).text("Stage 1 Clear").textFont({size:'20px', weight:'bold'});
+            Crafty.e('2D, Canvas, Text').attr({x:screenWidth/2, y:screenHeight/2}).text("Stage 1 Clear").textFont({size:'20px', weight:'bold'});
           }
         });
 
-var hitText = Crafty.e('2D, DOM, Text')
+var hitText = Crafty.e('2D, Canvas, Text')
   .attr({x: screenWidth - 100, y: 10
   });
 
@@ -37,7 +33,6 @@ hitText.textFont({
   size: '30px',
   weight: 'bold'
 });
-
 
 function drop()
 {
@@ -74,6 +69,6 @@ function pause()
 Crafty.bind("EnterFrame", function(){
   document.getElementById("message").innerHTML = Crafty.frame();
 
-  if (Crafty.frame() % 2 == 0)
+  if (Crafty.frame() % 4 == 0)
     drop();
 });
